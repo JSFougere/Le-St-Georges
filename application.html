@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111820"><meta name="robots" content="noindex, nofollow"><title>Application & outil de gestion — Le ST Georges</title><meta name="description" content="Maquette de démonstration : l’application mobile et l’outil de gestion du ST Georges à Étroussat."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23131411'/%3E%3Ctext x='32' y='44' font-size='38' text-anchor='middle' fill='%23dfb740' font-family='Georgia'%3ES%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="app.css"><script src="app.js" defer></script></head>
+<body class="app-page"><a class="skip" href="#demo">Aller à la démonstration</a>
+<header id="header"><a class="brand" href="index.html" aria-label="Le ST Georges, retour au site"><span class="wordmark">LE <strong>ST</strong> GEORGES<small>APPLICATION & GESTION · MAQUETTE</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu"><span></span><span></span></button><nav id="navigation" aria-label="Navigation principale"><a href="#demo">La démonstration</a><a href="#fonctions">Ce que ça fait</a><a href="#quotidien">Au quotidien</a><a class="nav-cta" href="index.html">Retour au site <span>↗</span></a></nav></header>
+
+<main>
+<section id="presentation" class="app-hero section">
+  <div class="app-hero-copy">
+    <p class="eyebrow">APPLICATION MOBILE & OUTIL DE GESTION</p>
+    <h1>VOS CLIENTS RÉSERVENT.<br><em>VOUS GARDEZ LA MAIN.</em></h1>
+    <p class="hero-tagline">Une appli pour vos clients, un outil simple pour vous.</p>
+    <p class="hero-description">Le client réserve sa table et voit l’ardoise du jour sur son téléphone. Vous retrouvez tout au même endroit, sans carnet ni appel en plein service.</p>
+    <div class="actions"><a class="button gold" href="#demo">Essayer la démonstration <span>↓</span></a><a class="text-link" href="#fonctions">Voir ce que ça fait <span>↓</span></a></div>
+  </div>
+  <div class="offer-cards">
+    <article class="offer-card">
+      <span class="offer-tag">POUR VOS CLIENTS</span>
+      <h2>L’application</h2>
+      <ul><li>Réserver une table en trois gestes</li><li>Voir l’ardoise du jour</li><li>Cumuler ses passages sur la carte de fidélité</li><li>Être prévenu des soirées et fermetures</li></ul>
+    </article>
+    <article class="offer-card">
+      <span class="offer-tag">POUR VOUS</span>
+      <h2>L’outil de gestion</h2>
+      <ul><li>Toutes les réservations sur un seul écran</li><li>Publier l’ardoise en une fois, partout</li><li>Un fichier clients avec leurs habitudes</li><li>Envoyer un message à tous vos clients</li></ul>
+    </article>
+  </div>
+</section>
+
+<div class="ribbon"><span>RÉSERVATION</span><b>•</b><span>ARDOISE DU JOUR</span><b>•</b><span>CARTE DE FIDÉLITÉ</span><b>•</b><span>FICHIER CLIENTS</span><b>•</b><span>MESSAGES</span></div>
+
+<section id="demo" class="demo-section section">
+  <div class="section-heading"><div><p class="eyebrow">LA DÉMONSTRATION</p><h2>ESSAYEZ, <em>ÇA SE PARLE.</em></h2><p>Réservez sur le téléphone : la table arrive dans l’outil de gestion. Publiez l’ardoise : elle s’affiche sur le téléphone.</p></div><span class="demo-badge">Maquette · données d’exemple</span></div>
+
+  <div class="demo-grid">
+    <div class="phone-column">
+      <p class="demo-label">CÔTÉ CLIENT · L’APPLICATION</p>
+      <div class="phone" aria-label="Aperçu de l’application mobile">
+        <div class="phone-screen">
+          <div class="phone-top"><span class="wordmark">LE <strong>ST</strong> GEORGES</span><span class="phone-place">Étroussat</span></div>
+          <div id="phone-notif" class="phone-notif" role="status" aria-live="polite"></div>
+          <div class="phone-body">
+
+            <div class="screen" data-screen="home">
+              <p class="phone-eyebrow">L’ARDOISE DU JOUR</p>
+              <div class="slate-card">
+                <dl>
+                  <div><dt>Entrée</dt><dd id="slate-starter"></dd></div>
+                  <div><dt>Plat</dt><dd id="slate-main"></dd></div>
+                  <div><dt>Dessert</dt><dd id="slate-dessert"></dd></div>
+                </dl>
+                <p class="slate-price">Formule <strong id="slate-price"></strong></p>
+              </div>
+              <div id="next-booking" class="next-booking" hidden>
+                <p class="phone-eyebrow">VOTRE PROCHAINE TABLE</p>
+                <p id="next-booking-text"></p>
+              </div>
+              <button class="button gold phone-button" type="button" data-go="book">Réserver une table <span>↗</span></button>
+              <button class="phone-link" type="button" data-go="loyalty">Ma carte de fidélité</button>
+            </div>
+
+            <div class="screen" data-screen="book" hidden>
+              <form id="booking-form">
+                <p class="phone-eyebrow">QUEL JOUR ?</p>
+                <div id="day-chips" class="chips" role="group" aria-label="Jour de la réservation"></div>
+                <p class="phone-eyebrow">À QUELLE HEURE ?</p>
+                <div id="time-chips" class="chips" role="group" aria-label="Heure de la réservation"></div>
+                <p class="phone-eyebrow">COMBIEN DE PERSONNES ?</p>
+                <div class="stepper"><button type="button" id="covers-minus" aria-label="Une personne de moins">−</button><output id="covers-value" aria-live="polite">2</output><button type="button" id="covers-plus" aria-label="Une personne de plus">+</button></div>
+                <label class="phone-eyebrow" for="booking-name">À QUEL NOM ?</label>
+                <input id="booking-name" type="text" autocomplete="off" maxlength="30" placeholder="Votre nom">
+                <button class="button gold phone-button" type="submit">Confirmer la réservation <span>↗</span></button>
+              </form>
+              <div id="booking-done" class="booking-done" hidden>
+                <p class="done-mark" aria-hidden="true">✓</p>
+                <h3>Table réservée</h3>
+                <p id="booking-summary"></p>
+                <p class="phone-muted">Le restaurant a reçu votre demande.</p>
+                <a class="phone-link" href="#gestion">Voir côté restaurant ↓</a>
+                <button class="phone-link" type="button" id="booking-again">Faire une autre réservation</button>
+              </div>
+            </div>
+
+            <div class="screen" data-screen="loyalty" hidden>
+              <p class="phone-eyebrow">MA CARTE DE FIDÉLITÉ</p>
+              <div class="loyalty-card">
+                <div id="stamps" class="stamps" aria-hidden="true"></div>
+                <p id="loyalty-count" class="loyalty-count"></p>
+                <p id="loyalty-text" class="phone-muted"></p>
+              </div>
+              <p class="phone-muted">Un passage est ajouté par le restaurant à chaque repas. La récompense est à définir avec vous.</p>
+            </div>
+
+            <div class="screen" data-screen="news" hidden>
+              <p class="phone-eyebrow">LES NOUVELLES DU ST GEORGES</p>
+              <ul id="news-list" class="news-list"></ul>
+            </div>
+
+          </div>
+          <div class="phone-tabs" role="tablist" aria-label="Écrans de l’application">
+            <button type="button" role="tab" data-tab="home" aria-selected="true">Accueil</button>
+            <button type="button" role="tab" data-tab="book" aria-selected="false">Réserver</button>
+            <button type="button" role="tab" data-tab="loyalty" aria-selected="false">Fidélité</button>
+            <button type="button" role="tab" data-tab="news" aria-selected="false">Actus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gestion" class="crm-column">
+      <p class="demo-label">CÔTÉ RESTAURANT · L’OUTIL DE GESTION</p>
+      <div class="crm">
+        <div class="crm-bar"><span class="wordmark">LE <strong>ST</strong> GEORGES</span><span id="crm-date" class="crm-date"></span></div>
+        <div class="crm-stats">
+          <div><strong id="stat-covers">0</strong><span>couverts à venir</span></div>
+          <div><strong id="stat-bookings">0</strong><span>réservations</span></div>
+          <div><strong id="stat-app">0</strong><span>reçues par l’appli</span></div>
+        </div>
+        <div class="crm-tabs" role="tablist" aria-label="Rubriques de l’outil de gestion">
+          <button type="button" role="tab" data-view="bookings" aria-selected="true">Réservations</button>
+          <button type="button" role="tab" data-view="slate" aria-selected="false">Ardoise</button>
+          <button type="button" role="tab" data-view="clients" aria-selected="false">Clients</button>
+          <button type="button" role="tab" data-view="message" aria-selected="false">Message</button>
+        </div>
+        <p id="crm-status" class="crm-status" role="status" aria-live="polite"></p>
+
+        <div class="crm-view" data-view-panel="bookings">
+          <ul id="booking-list" class="crm-list"></ul>
+        </div>
+
+        <div class="crm-view" data-view-panel="slate" hidden>
+          <form id="slate-form" class="crm-form">
+            <label>Entrée<input name="starter" type="text" maxlength="60"></label>
+            <label>Plat<input name="main" type="text" maxlength="60"></label>
+            <label>Dessert<input name="dessert" type="text" maxlength="60"></label>
+            <label>Prix de la formule<input name="price" type="text" maxlength="12"></label>
+            <button class="button gold" type="submit">Publier l’ardoise <span>↗</span></button>
+            <p class="crm-hint">Une seule saisie : l’ardoise est mise à jour sur l’appli et sur le site, et vos clients sont prévenus.</p>
+          </form>
+        </div>
+
+        <div class="crm-view" data-view-panel="clients" hidden>
+          <ul id="client-list" class="crm-list"></ul>
+        </div>
+
+        <div class="crm-view" data-view-panel="message" hidden>
+          <form id="message-form" class="crm-form">
+            <div id="message-presets" class="chips" role="group" aria-label="Messages prêts à envoyer"></div>
+            <label>Votre message<textarea name="text" rows="3" maxlength="140"></textarea></label>
+            <button class="button gold" type="submit">Envoyer à mes clients <span>↗</span></button>
+            <p class="crm-hint">Le message arrive en notification sur le téléphone de vos clients.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fonctions" class="features section">
+  <div class="section-heading reveal"><div><p class="eyebrow">CE QUE ÇA FAIT</p><h2>UTILE TOUS LES JOURS,<br>SIMPLE À PRENDRE EN MAIN.</h2></div></div>
+  <div class="feature-columns">
+    <div class="reveal">
+      <h3>L’application, pour vos clients</h3>
+      <div class="feature-grid">
+        <article><span class="value-number">RÉSERVER</span><h4>Une table en trois gestes</h4><p>Jour, heure, nombre de personnes. Sans appeler, même quand vous êtes fermé.</p></article>
+        <article><span class="value-number">L’ARDOISE</span><h4>Le menu du jour sous les yeux</h4><p>Vos clients savent ce qu’il y a à manger avant de venir.</p></article>
+        <article><span class="value-number">FIDÉLITÉ</span><h4>Une carte qu’on ne perd pas</h4><p>Les passages se cumulent sur le téléphone. Plus de carton à tamponner.</p></article>
+        <article><span class="value-number">LES NOUVELLES</span><h4>Prévenus au bon moment</h4><p>Soirée, plat du jour, fermeture exceptionnelle : l’info arrive directement.</p></article>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3>L’outil de gestion, pour vous</h3>
+      <div class="feature-grid">
+        <article><span class="value-number">RÉSERVATIONS</span><h4>Tout sur un seul écran</h4><p>Les tables du jour et des jours suivants, avec le nombre de couverts à prévoir.</p></article>
+        <article><span class="value-number">ARDOISE</span><h4>Une saisie, partout à jour</h4><p>Vous écrivez l’ardoise une fois : l’appli et le site suivent.</p></article>
+        <article><span class="value-number">CLIENTS</span><h4>Vos habitués, leurs habitudes</h4><p>Nombre de passages, table préférée, allergie à retenir : c’est noté.</p></article>
+        <article><span class="value-number">MESSAGES</span><h4>Parler à tous en une fois</h4><p>Un message, et tous vos clients le reçoivent sur leur téléphone.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quotidien" class="compare section">
+  <div class="section-heading reveal"><div><p class="eyebrow">AU QUOTIDIEN</p><h2>CE QUE ÇA <em>CHANGE.</em></h2></div></div>
+  <div class="compare-table reveal" role="table" aria-label="Comparaison sans et avec l’application">
+    <div class="compare-head" role="row"><span role="columnheader">Sans l’appli</span><span role="columnheader">Avec l’appli</span></div>
+    <div role="row"><p role="cell">Le téléphone sonne en plein service pour une réservation.</p><p role="cell">La réservation arrive toute seule, vous la voyez quand vous avez un moment.</p></div>
+    <div role="row"><p role="cell">Les réservations sont dans un carnet, sur un bout de papier ou de tête.</p><p role="cell">Elles sont toutes sur un écran, avec le total de couverts.</p></div>
+    <div role="row"><p role="cell">L’ardoise est à recopier sur la porte, le site et les réseaux.</p><p role="cell">Vous la saisissez une fois, elle est à jour partout.</p></div>
+    <div role="row"><p role="cell">Pour annoncer une soirée, il faut compter sur le bouche-à-oreille.</p><p role="cell">Un message, et vos clients sont prévenus.</p></div>
+  </div>
+</section>
+
+<section class="final-cta section reveal"><p class="eyebrow">LA SUITE</p><h2>ON EN <em>PARLE ?</em></h2><p>Cette page est une maquette : tout s’adapte à votre façon de travailler.</p><div class="actions"><a class="button gold" href="#demo">Revoir la démonstration <span>↑</span></a><a class="text-link" href="index.html">Retour au site <span>↗</span></a></div></section>
+</main>
+
+<footer class="section"><div class="footer-top"><a class="brand" href="index.html"><span class="wordmark">LE <strong>ST</strong> GEORGES<small>BAR & RESTAURANT · ÉTROUSSAT</small></span></a><nav aria-label="Navigation de pied de page"><a href="#demo">La démonstration</a><a href="#fonctions">Ce que ça fait</a><a href="#quotidien">Au quotidien</a><a href="index.html">Le site</a></nav><a class="back-top" href="#presentation" aria-label="Revenir en haut">↑</a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Le ST Georges</span><span>Maquette de démonstration · Données d’exemple</span></div></footer>
+</body></html>
